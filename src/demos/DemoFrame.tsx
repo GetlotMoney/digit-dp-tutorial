@@ -21,10 +21,10 @@ export function DemoFrame({
     whileHover={reduce ? undefined : { y: -2 }}
       className="my-6 overflow-x-auto rounded-2xl border border-primary/30 bg-gradient-to-br from-muted/50 to-primary/5 p-6 dark:from-muted/20 dark:to-primary/10"
     >
-      <div className="mb-1 text-xs font-bold uppercase tracking-wider text-primary">
+      <div className="mb-4 text-xs font-bold uppercase tracking-wider text-primary">
         交互演示 · {title}
       </div>
-      {desc && <div className="mb-3.5 text-sm text-muted-foreground">{desc}</div>}
+      {desc && <div className="mb-5 text-sm leading-relaxed text-muted-foreground">{desc}</div>}
       {children}
     </motion.div>
   )

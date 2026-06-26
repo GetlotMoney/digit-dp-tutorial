@@ -10,7 +10,7 @@
   display: flex;
   gap: 8px;
   flex-wrap: wrap;
-  margin: 12px 0;
+  margin: 16px 0;
 }
 
 .digit {
@@ -59,7 +59,7 @@
   display: flex;
   gap: 10px;
   flex-wrap: wrap;
-  margin: 10px 0;
+  margin: 14px 0;
 }
 
 .badge {
@@ -111,7 +111,7 @@
   display: flex;
   gap: 6px;
   flex-wrap: wrap;
-  margin: 10px 0;
+  margin: 14px 0;
 }
 
 .choice {
@@ -181,7 +181,7 @@
   flex-wrap: wrap;
   font-size: 12px;
   color: var(--muted-foreground);
-  margin-top: 10px;
+  margin-top: 16px;
 }
 
 .legend span {
@@ -196,8 +196,8 @@
   background: var(--background);
   border: 1px solid var(--border);
   border-radius: 8px;
-  padding: 10px 14px;
-  margin-top: 12px;
+  padding: 12px 16px;
+  margin-top: 16px;
   color: var(--foreground);
 }
 
@@ -237,7 +237,7 @@
   font-family: var(--font-mono);
   font-size: 20px;
   letter-spacing: 6px;
-  margin: 10px 0;
+  margin: 14px 0;
 }
 
 .wave .pk {
@@ -257,7 +257,7 @@
 /* 波动值表 */
 table.wavtbl {
   border-collapse: collapse;
-  margin: 12px 0;
+  margin: 16px 0;
   font-size: 13px;
 }
 
