@@ -1,0 +1,344 @@
+/*
+ * 演示样式（从原 index.html 平移）
+ * 约束：图例颜色（红=limit / 黄=lead0 / 绿=free）是教学语义，
+ * 必须保持固定，不随主题变化 —— 一律用 var(--legend-*) 。
+ * 其他颜色（背景、边框、文字）随明暗主题自适应。
+ */
+
+/* 数字方格 */
+.digit-row {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+  margin: 12px 0;
+}
+
+.digit {
+  width: 46px;
+  height: 56px;
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 24px;
+  font-weight: 700;
+  border: 2px solid var(--border);
+  background: var(--background);
+  color: var(--foreground);
+  position: relative;
+  transition: all 0.2s;
+}
+
+.digit.fill {
+  background: color-mix(in oklch, var(--primary) 18%, var(--background));
+  border-color: var(--primary);
+}
+
+.digit.cur {
+  outline: 3px solid var(--primary);
+  outline-offset: 2px;
+}
+
+.digit.fixed {
+  background: var(--muted);
+  color: var(--muted-foreground);
+}
+
+.digit .tag {
+  position: absolute;
+  top: -16px;
+  font-size: 9px;
+  font-weight: 700;
+  color: var(--muted-foreground);
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+/* 状态徽章 —— 图例颜色固定，不随主题变 */
+.badges {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+  margin: 10px 0;
+}
+
+.badge {
+  padding: 5px 12px;
+  border-radius: 20px;
+  font-size: 12px;
+  font-weight: 600;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.badge.lim {
+  background: color-mix(in oklch, var(--legend-limit) 18%, var(--background));
+  color: var(--legend-limit);
+}
+
+.badge.lead {
+  background: color-mix(in oklch, var(--legend-lead0) 18%, var(--background));
+  color: var(--legend-lead0);
+}
+
+.badge.free {
+  background: color-mix(in oklch, var(--legend-free) 18%, var(--background));
+  color: var(--legend-free);
+}
+
+.badge .dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  display: inline-block;
+}
+
+.badge.lim .dot {
+  background: var(--legend-limit);
+}
+
+.badge.lead .dot {
+  background: var(--legend-lead0);
+}
+
+.badge.free .dot {
+  background: var(--legend-free);
+}
+
+/* 数字选择按钮 */
+.choices {
+  display: flex;
+  gap: 6px;
+  flex-wrap: wrap;
+  margin: 10px 0;
+}
+
+.choice {
+  width: 38px;
+  height: 38px;
+  border-radius: 8px;
+  border: 2px solid var(--border);
+  background: var(--background);
+  cursor: pointer;
+  font-size: 16px;
+  font-weight: 700;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--foreground);
+  transition: all 0.15s;
+  user-select: none;
+}
+
+.choice:hover:not(.dis) {
+  border-color: var(--primary);
+  background: color-mix(in oklch, var(--primary) 12%, var(--background));
+}
+
+.choice.sel {
+  border-color: var(--primary);
+  background: var(--primary);
+  color: var(--primary-foreground);
+}
+
+.choice.dis {
+  opacity: 0.3;
+  cursor: not-allowed;
+  background: var(--muted);
+}
+
+/* 文本递归树 */
+.tree {
+  font-family: var(--font-mono);
+  font-size: 12px;
+  line-height: 1.5;
+  white-space: pre;
+  overflow-x: auto;
+  color: var(--foreground);
+}
+
+.tree .hit {
+  background: color-mix(in oklch, var(--legend-lead0) 35%, var(--background));
+  border-radius: 3px;
+  padding: 0 3px;
+}
+
+.tree .miss {
+  color: var(--muted-foreground);
+}
+
+.tree .cache {
+  background: color-mix(in oklch, var(--legend-free) 30%, var(--background));
+  border-radius: 3px;
+  padding: 0 3px;
+}
+
+/* 图例行 */
+.legend {
+  display: flex;
+  gap: 16px;
+  flex-wrap: wrap;
+  font-size: 12px;
+  color: var(--muted-foreground);
+  margin-top: 10px;
+}
+
+.legend span {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+}
+
+/* 统计/说明条 */
+.statline {
+  font-size: 13px;
+  background: var(--background);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: 10px 14px;
+  margin-top: 12px;
+  color: var(--foreground);
+}
+
+.statline b {
+  color: var(--primary);
+}
+
+/* 区间条（前缀和演示） —— 段颜色用图例语义色，固定 */
+.rangebar {
+  display: flex;
+  height: 40px;
+  border-radius: 8px;
+  overflow: hidden;
+  margin: 14px 0;
+  border: 1px solid var(--border);
+}
+
+.rangebar .seg {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 12px;
+  font-weight: 600;
+  color: #fff;
+}
+
+.rangebar .seg.a {
+  background: var(--legend-free);
+}
+
+.rangebar .seg.b {
+  background: var(--legend-lead0);
+}
+
+/* 波动值展示 */
+.wave {
+  font-family: var(--font-mono);
+  font-size: 20px;
+  letter-spacing: 6px;
+  margin: 10px 0;
+}
+
+.wave .pk {
+  color: var(--legend-limit);
+  font-weight: 700;
+}
+
+.wave .vy {
+  color: var(--primary);
+  font-weight: 700;
+}
+
+.wave .norm {
+  color: var(--muted-foreground);
+}
+
+/* 波动值表 */
+table.wavtbl {
+  border-collapse: collapse;
+  margin: 12px 0;
+  font-size: 13px;
+}
+
+table.wavtbl th,
+table.wavtbl td {
+  border: 1px solid var(--border);
+  padding: 5px 12px;
+  text-align: center;
+}
+
+table.wavtbl th {
+  background: var(--muted);
+  color: var(--foreground);
+}
+
+table.wavtbl td.w {
+  font-weight: 700;
+  color: var(--primary);
+}
+
+/* 演示内的控件（输入框、按钮） */
+.demo-controls {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  align-items: center;
+  margin-bottom: 16px;
+}
+
+.demo-controls label {
+  font-size: 14px;
+  color: var(--foreground);
+}
+
+.demo-controls input {
+  width: 90px;
+  padding: 6px 10px;
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  font-size: 14px;
+  font-family: inherit;
+  background: var(--background);
+  color: var(--foreground);
+}
+
+.demo-controls button {
+  padding: 7px 14px;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 13px;
+  font-weight: 600;
+  background: var(--primary);
+  color: var(--primary-foreground);
+  transition: opacity 0.15s;
+}
+
+.demo-controls button:hover {
+  opacity: 0.88;
+}
+
+.demo-controls button.sec {
+  background: var(--muted-foreground);
+  color: var(--background);
+}
+
+.demo-controls button:disabled {
+  opacity: 0.4;
+  cursor: not-allowed;
+}
+
+/* 小屏适配 */
+@media (max-width: 640px) {
+  .digit {
+    width: 38px;
+    height: 46px;
+    font-size: 18px;
+  }
+  .choice {
+    width: 32px;
+    height: 32px;
+    font-size: 14px;
+  }
+}
