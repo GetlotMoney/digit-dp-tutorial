@@ -23,15 +23,15 @@ const FEATURES = [
 export function FeatureCards() {
   const reduce = useReducedMotion()
   return (
-    <section className="mx-auto max-w-6xl px-4 py-20 md:px-6">
-      <div className="mb-10 text-center">
+    <section className="mx-auto max-w-6xl px-4 py-24 md:px-6 md:py-28">
+      <div className="mb-12 text-center">
         <h2 className="text-3xl font-bold tracking-tight md:text-4xl">为什么是「交互式」</h2>
-        <p className="mx-auto mt-3 max-w-2xl text-muted-foreground">
+        <p className="mx-auto mt-4 max-w-2xl text-muted-foreground md:text-lg">
           多数教程是文字 + 静态代码。数位 DP 的状态变化只能靠脑补，我们把它变成看得见的动画。
         </p>
       </div>
 
-      <div className="grid gap-6 md:grid-cols-3">
+      <div className="grid gap-8 md:grid-cols-3">
         {FEATURES.map((f, i) => (
           <motion.div
             key={f.title}

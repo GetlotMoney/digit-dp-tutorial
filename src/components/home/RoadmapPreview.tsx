@@ -15,15 +15,15 @@ export function RoadmapPreview() {
   const reduce = useReducedMotion()
   return (
     <section className="bg-muted/30 border-y border-border">
-      <div className="mx-auto max-w-6xl px-4 py-20 md:px-6">
-        <div className="mb-10 text-center">
+      <div className="mx-auto max-w-6xl px-4 py-24 md:px-6 md:py-28">
+        <div className="mb-12 text-center">
           <h2 className="text-3xl font-bold tracking-tight md:text-4xl">学习路线</h2>
-          <p className="mx-auto mt-3 max-w-2xl text-muted-foreground">
+          <p className="mx-auto mt-4 max-w-2xl text-muted-foreground md:text-lg">
             6 个阶段递进，预计 3-5 周（按每天 1-2 小时计）。完整版见教程内。
           </p>
         </div>
 
-        <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+        <div className="grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
           {STAGES.map((s, i) => (
             <motion.div
               key={s.n}
