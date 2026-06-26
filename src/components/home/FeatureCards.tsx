@@ -23,7 +23,7 @@ const FEATURES = [
 export function FeatureCards() {
   const reduce = useReducedMotion()
   return (
-    <section className="mx-auto max-w-6xl px-4 py-24 md:px-6 md:py-28">
+    <section className="mx-auto max-w-6xl px-4 py-24 md:px-6 md:py-28 mb-8">
       <div className="mb-12 text-center">
         <h2 className="text-3xl font-bold tracking-tight md:text-4xl">为什么是「交互式」</h2>
         <p className="mx-auto mt-4 max-w-2xl text-muted-foreground md:text-lg">

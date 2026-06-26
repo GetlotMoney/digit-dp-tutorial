@@ -16,7 +16,7 @@ export function Hero() {
   const reduce = useReducedMotion()
 
   return (
-    <section className="relative min-h-[70vh] overflow-hidden bg-gradient-to-br from-primary via-primary to-[var(--accent-orange)] text-primary-foreground">
+    <section className="relative min-h-[70vh] overflow-hidden bg-gradient-to-br from-primary via-primary to-[var(--accent-orange)] text-primary-foreground mb-8">
       <div
         className="pointer-events-none absolute inset-0 opacity-30"
         style={{
