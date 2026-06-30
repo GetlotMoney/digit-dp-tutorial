@@ -8,7 +8,7 @@ import { Badge } from '@/components/ui/badge'
 import { Button } from '@/components/ui/button'
 
 export default function BlogListPage() {
-  const { isAdmin } = useAuth()
+  const { user } = useAuth()
   const [posts, setPosts] = useState<BlogPost[]>([])
   const [categories, setCategories] = useState<string[]>([])
   const [allTags, setAllTags] = useState<string[]>([])
@@ -62,7 +62,7 @@ export default function BlogListPage() {
           <h1 className="text-3xl font-bold tracking-tight">博客</h1>
           <p className="mt-2 text-muted-foreground">算法笔记、解题思路、竞赛复盘</p>
         </div>
-        {isAdmin && (
+        {user && (
           <Button nativeButton={false} render={<Link to="/blog/new" />}>
             <PenLine className="mr-1.5 h-4 w-4" />
             写博客

@@ -50,6 +50,29 @@ const VERSIONS = [
       'README.md / CHANGELOG.md 全英文',
     ],
   },
+  {
+    version: 'v1.4',
+    date: '2026-07-01',
+    changes: [
+      '首屏 Hero 登录页：未登录只看到全屏渐变 + 浮动数字 + 登录/注册',
+      '全局路由守卫：未登录只能访问 /login 和 /register',
+      '博客在线编辑器：TipTap 富文本 + HTML 源码模式 + 标签/分类',
+      '管理员 React 组件模式：iframe sandbox + Babel standalone',
+      'Supabase 博客存储：blog_posts 表 + RLS 策略',
+      '博客列表/详情接入 Supabase（分类+标签筛选）',
+      '修复 Supabase URL 不匹配（vrnhwkykkldrkxqafgui → cnwnmcobmqplawvcvptb）',
+      '修复 Supabase anon key 过期（重新获取新 key）',
+      'Supabase Auth 邮件跳转地址配置（指向 Vercel 域名）',
+    ],
+  },
+  {
+    version: 'v1.5',
+    date: '2026-07-01',
+    changes: [
+      'Hero 浮动数字位置调整：推到四角边缘，降低不透明度，避免和标题文字重合',
+      'Hero 去掉「浏览专题」「查看路线」按钮',
+    ],
+  },
 ]
 
 export default function AboutPage() {

@@ -1,15 +1,13 @@
-import { Link } from 'react-router-dom'
 import { motion, useReducedMotion } from 'framer-motion'
-import { ArrowRight, Sparkles, BookOpen } from 'lucide-react'
-import { Button } from '@/components/ui/button'
+import { Sparkles } from 'lucide-react'
 
 const FLOAT_DIGITS = [
-  { d: '3', x: '8%', y: '22%', delay: 0 },
-  { d: '2', x: '18%', y: '68%', delay: 0.6 },
-  { d: '4', x: '82%', y: '28%', delay: 0.3 },
-  { d: '7', x: '90%', y: '64%', delay: 0.9 },
-  { d: '9', x: '72%', y: '78%', delay: 1.2 },
-  { d: '1', x: '30%', y: '32%', delay: 0.4 },
+  { d: '3', x: '3%',  y: '15%', delay: 0 },
+  { d: '2', x: '5%',  y: '72%', delay: 0.6 },
+  { d: '4', x: '88%', y: '18%', delay: 0.3 },
+  { d: '7', x: '92%', y: '68%', delay: 0.9 },
+  { d: '9', x: '78%', y: '82%', delay: 1.2 },
+  { d: '1', x: '12%', y: '45%', delay: 0.4 },
 ]
 
 export function Hero() {
@@ -30,7 +28,7 @@ export function Hero() {
         FLOAT_DIGITS.map((f) => (
           <motion.div
             key={f.d}
-            className="pointer-events-none absolute hidden h-14 w-14 items-center justify-center rounded-xl border border-white/30 bg-white/10 text-2xl font-bold backdrop-blur-sm md:flex"
+            className="pointer-events-none absolute hidden h-12 w-12 items-center justify-center rounded-xl border border-white/20 bg-white/5 text-xl font-bold text-white/40 backdrop-blur-sm md:flex"
             style={{ left: f.x, top: f.y }}
             animate={{ y: [0, -12, 0] }}
             transition={{ repeat: Infinity, duration: 4, ease: 'easeInOut', delay: f.delay }}
@@ -61,23 +59,6 @@ export function Hero() {
             把抽象的算法状态变成看得见、点得动的交互演示。覆盖
             <code className="rounded bg-white/20 px-1.5 py-0.5 text-base">25+</code> 个专题，由浅入深，专治学不会。
           </p>
-
-          <div className="mt-10 flex flex-wrap gap-3 md:mt-12">
-            <Button size="lg" variant="secondary" className="bg-white text-primary hover:bg-white/90" nativeButton={false} render={<Link to="/topics" />}>
-              <BookOpen className="mr-2 h-4 w-4" />
-              浏览专题
-            </Button>
-            <Button
-              size="lg"
-              variant="outline"
-              className="border-white/40 bg-transparent text-primary-foreground hover:bg-white/10 hover:text-primary-foreground"
-              nativeButton={false}
-              render={<Link to="/about" />}
-            >
-              查看路线
-              <ArrowRight className="ml-2 h-4 w-4" />
-            </Button>
-          </div>
         </motion.div>
       </div>
 
