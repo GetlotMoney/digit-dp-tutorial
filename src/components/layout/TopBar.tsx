@@ -1,8 +1,9 @@
 import { useState, useCallback } from 'react'
-import { Link, NavLink } from 'react-router-dom'
-import { Binary, Menu, X } from 'lucide-react'
+import { Link, NavLink, useNavigate } from 'react-router-dom'
+import { Binary, Menu, X, LogOut, User as UserIcon } from 'lucide-react'
 import { ThemeToggle } from './ThemeToggle'
 import { SidebarNav } from './SidebarNav'
+import { useAuth } from '@/hooks/useAuth'
 import { Button } from '@/components/ui/button'
 import { cn } from '@/lib/utils'
 
@@ -16,6 +17,15 @@ const NAV = [
 export function TopBar() {
   const [mobileOpen, setMobileOpen] = useState(false)
   const closeMobile = useCallback(() => setMobileOpen(false), [])
+  const { user, signOut, loading } = useAuth()
+  const navigate = useNavigate()
+
+  const handleLogout = async () => {
+    await signOut()
+    navigate('/')
+  }
+
+  const username = user?.user_metadata?.username || user?.email?.split('@')[0] || '用户'
 
   return (
     <header className="sticky top-0 z-40 w-full border-b border-border/60 bg-background/80 backdrop-blur-md">
@@ -48,9 +58,30 @@ export function TopBar() {
         </nav>
 
         <div className="ml-auto flex items-center gap-2">
-          <Button variant="default" size="sm" className="hidden sm:inline-flex" nativeButton={false} render={<Link to="/topics" />}>
-            开始学习
-          </Button>
+          {!loading && (
+            user ? (
+              // 已登录：显示用户名 + 退出
+              <div className="hidden items-center gap-2 sm:flex">
+                <span className="flex items-center gap-1.5 rounded-full bg-primary/10 px-3 py-1 text-sm font-medium text-primary">
+                  <UserIcon className="h-3.5 w-3.5" />
+                  {username}
+                </span>
+                <Button variant="ghost" size="sm" onClick={handleLogout} aria-label="退出登录">
+                  <LogOut className="h-4 w-4" />
+                </Button>
+              </div>
+            ) : (
+              // 未登录：显示登录/注册
+              <div className="hidden items-center gap-1.5 sm:flex">
+                <Button variant="ghost" size="sm" nativeButton={false} render={<Link to="/login" />}>
+                  登录
+                </Button>
+                <Button variant="default" size="sm" nativeButton={false} render={<Link to="/register" />}>
+                  注册
+                </Button>
+              </div>
+            )
+          )}
           <ThemeToggle />
 
           {/* 移动端菜单按钮 */}
