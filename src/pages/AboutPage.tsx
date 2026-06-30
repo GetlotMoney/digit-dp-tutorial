@@ -73,6 +73,20 @@ const VERSIONS = [
       'Hero 去掉「浏览专题」「查看路线」按钮',
     ],
   },
+  {
+    version: 'v1.6',
+    date: '2026-07-01',
+    changes: [
+      '博客编辑器重构：左右分栏（编辑器 + 实时预览），类 CSDN 编辑体验',
+      '图片拖拽上传：拖拽/粘贴图片自动上传到 Supabase Storage',
+      '自定义栏目：分类下拉新增「自定义」选项',
+      '增强工具栏：删除线、任务列表、撤销/重做、代码块/引用/分割线',
+      '博客阅读页重构：CSDN 风格布局（左侧文章 + 右侧 TOC 目录）',
+      '文章头部：作者名、发布日期、阅读时间估算、分类、标签',
+      'Shiki 代码高亮扩展到 15 种语言（cpp/python/js/ts/java/rust/go/bash/json/html/css/sql/md/yaml/xml）',
+      '所有登录用户均可写博客（不再限制管理员）',
+    ],
+  },
 ]
 
 export default function AboutPage() {

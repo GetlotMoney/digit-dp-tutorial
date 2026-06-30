@@ -157,6 +157,26 @@ export async function getAllTags(): Promise<string[]> {
   return [...tagSet].sort()
 }
 
+// ---- 图片上传 ----
+
+/**
+ * 上传图片到 Supabase Storage 并返回公开 URL。
+ * 需要在 Supabase Dashboard 创建名为 'blog-images' 的 public bucket：
+ * Storage → New bucket → name: blog-images → public 勾选。
+ */
+export async function uploadImage(file: File): Promise<string> {
+  const ext = file.name.split('.').pop() ?? 'png'
+  const path = `${Date.now()}-${Math.random().toString(36).slice(2, 8)}.${ext}`
+  const { data, error } = await supabase.storage
+    .from('blog-images')
+    .upload(path, file, { contentType: file.type })
+  if (error) throw new Error(`图片上传失败: ${error.message}`)
+  const { data: urlData } = supabase.storage
+    .from('blog-images')
+    .getPublicUrl(data.path)
+  return urlData.publicUrl
+}
+
 // ---- 管理员工具 ----
 
 /**
