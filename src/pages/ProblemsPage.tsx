@@ -15,7 +15,7 @@ export default function ProblemsPage() {
             在线做题、进度追踪、笔记功能将在后续阶段加入。
           </p>
         </div>
-        <Button variant="default" nativeButton={false} render={<Link to="/tutorial" />}>先去看教程</Button>
+        <Button variant="default" nativeButton={false} render={<Link to="/topics/digit-dp" />}>先去看教程</Button>
       </Card>
     </div>
   )

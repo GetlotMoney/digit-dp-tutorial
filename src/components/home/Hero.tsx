@@ -48,25 +48,24 @@ export function Hero() {
         >
           <span className="inline-flex items-center gap-1.5 rounded-full bg-white/15 px-4 py-1.5 text-sm font-medium backdrop-blur-sm">
             <Sparkles className="h-3.5 w-3.5" />
-            交互式算法教程 · 首批专题
+            交互式算法教程 · 咕嘎学不会算法
           </span>
 
           <h1 className="mt-10 text-4xl font-bold leading-[1.1] tracking-tight md:mt-12 md:text-7xl">
-            数位 DP
+            咕嘎
             <br />
-            交互教程
+            学不会算法
           </h1>
 
           <p className="mt-8 max-w-xl text-lg text-primary-foreground/85 md:mt-10 md:text-xl">
-            把 <code className="rounded bg-white/20 px-1.5 py-0.5 text-base">limit</code>、
-            <code className="rounded bg-white/20 px-1.5 py-0.5 text-base">lead0</code>、记忆化递归树这些
-            只能靠脑补的状态，变成可点可玩的演示。从 f(R) − f(L−1) 开始，通透数位 DP。
+            把抽象的算法状态变成看得见、点得动的交互演示。覆盖
+            <code className="rounded bg-white/20 px-1.5 py-0.5 text-base">25+</code> 个专题，由浅入深，专治学不会。
           </p>
 
           <div className="mt-10 flex flex-wrap gap-3 md:mt-12">
-            <Button size="lg" variant="secondary" className="bg-white text-primary hover:bg-white/90" nativeButton={false} render={<Link to="/tutorial" />}>
+            <Button size="lg" variant="secondary" className="bg-white text-primary hover:bg-white/90" nativeButton={false} render={<Link to="/topics" />}>
               <BookOpen className="mr-2 h-4 w-4" />
-              开始学习
+              浏览专题
             </Button>
             <Button
               size="lg"

@@ -8,9 +8,9 @@ import { cn } from '@/lib/utils'
 
 const NAV = [
   { to: '/', label: '首页', end: true },
-  { to: '/tutorial', label: '教程' },
-  { to: '/problems', label: '题库' },
-  { to: '/about', label: '关于' },
+  { to: '/topics', label: '专题', end: true },
+  { to: '/blog', label: '博客', end: false },
+  { to: '/about', label: '关于', end: false },
 ]
 
 export function TopBar() {
@@ -24,7 +24,7 @@ export function TopBar() {
           <span className="flex h-8 w-8 items-center justify-center rounded-lg bg-primary text-primary-foreground">
             <Binary className="h-5 w-5" />
           </span>
-          <span className="hidden sm:inline">数位 DP</span>
+          <span className="hidden sm:inline">咕嘎学不会算法</span>
         </Link>
 
         <nav className="ml-2 hidden items-center gap-1 md:flex">
@@ -48,7 +48,7 @@ export function TopBar() {
         </nav>
 
         <div className="ml-auto flex items-center gap-2">
-          <Button variant="default" size="sm" className="hidden sm:inline-flex" nativeButton={false} render={<Link to="/tutorial" />}>
+          <Button variant="default" size="sm" className="hidden sm:inline-flex" nativeButton={false} render={<Link to="/topics" />}>
             开始学习
           </Button>
           <ThemeToggle />

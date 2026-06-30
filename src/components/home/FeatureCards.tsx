@@ -1,22 +1,22 @@
 import { motion, useReducedMotion } from 'framer-motion'
-import { MousePointerClick, Map, FileCode2 } from 'lucide-react'
-import { Card, CardHeader, CardTitle, CardDescription, CardContent } from '@/components/ui/card'
+import { Layers, MousePointerClick, Route } from 'lucide-react'
+import { Card, CardHeader, CardTitle, CardDescription } from '@/components/ui/card'
 
 const FEATURES = [
   {
+    icon: Layers,
+    title: '25+ 算法专题',
+    desc: '从基础到进阶，覆盖 DP / 数据结构 / 图论 / 数学 / 字符串。每个专题配有讲解、演示和练习题单。',
+  },
+  {
     icon: MousePointerClick,
-    title: '5 个交互演示',
-    desc: '前缀和转化、逐位填数 + limit/lead0 状态、记忆化递归树、波动值判定、完整例题 LeetCode 3753 —— 改参数、单步执行、观察状态变化。',
+    title: '交互式演示',
+    desc: '把抽象的状态变化变成看得见、点得动的动画。改参数、单步执行、观察记忆化命中——不再只靠脑补。',
   },
   {
-    icon: Map,
-    title: '6 阶段学习路线',
-    desc: '从复习记忆化搜索到冲题归纳，3-5 周。每阶段配自检清单，知道什么时候算「会了」。',
-  },
-  {
-    icon: FileCode2,
-    title: '完整例题串讲',
-    desc: 'LeetCode 3753 范围内总波动值 II：从读题到列状态到写代码，含「求和类数位 DP 要乘子树计数」这个关键坑。',
+    icon: Route,
+    title: '学习路线',
+    desc: '按难度递进，每个专题配自检清单和练习题单。知道自己在哪里、下一步该学什么。',
   },
 ]
 
@@ -27,7 +27,7 @@ export function FeatureCards() {
       <div className="mb-12 text-center">
         <h2 className="text-3xl font-bold tracking-tight md:text-4xl">为什么是「交互式」</h2>
         <p className="mx-auto mt-4 max-w-2xl text-muted-foreground md:text-lg">
-          多数教程是文字 + 静态代码。数位 DP 的状态变化只能靠脑补，我们把它变成看得见的动画。
+          多数教程是文字 + 静态代码。算法的状态变化只能靠脑补，我们把它变成看得见的动画。
         </p>
       </div>
 

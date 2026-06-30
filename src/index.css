@@ -1,5 +1,6 @@
 @import "tailwindcss";
 @import "tw-animate-css";
+@import "katex/dist/katex.min.css";
 
 @custom-variant dark (&:is(.dark *));
 
@@ -250,19 +251,32 @@
 
 /* Markdown 教程正文排版 */
 .prose-tutorial {
-  line-height: 1.8;
+  line-height: 1.85;
   color: var(--foreground);
+  font-size: 15px;
+}
+.prose-tutorial h2 {
+  font-size: 1.5rem;
+  font-weight: 700;
+  margin: 2.5rem 0 1rem;
+  padding-bottom: 0.5rem;
+  border-bottom: 2px solid var(--primary);
+  color: var(--foreground);
+  letter-spacing: -0.01em;
 }
 .prose-tutorial h3 {
-  font-size: 1.25rem;
+  font-size: 1.2rem;
   font-weight: 600;
-  margin: 1.6rem 0 0.6rem;
+  margin: 2rem 0 0.75rem;
   color: var(--foreground);
+  padding-left: 0.75rem;
+  border-left: 3px solid var(--primary);
 }
 .prose-tutorial h4 {
   font-size: 1.05rem;
   font-weight: 600;
-  margin: 1.2rem 0 0.5rem;
+  margin: 1.5rem 0 0.5rem;
+  color: var(--foreground);
 }
 .prose-tutorial p {
   margin: 0 0 1rem;
@@ -278,22 +292,70 @@
   list-style: decimal;
 }
 .prose-tutorial li {
-  margin-bottom: 0.4rem;
+  margin-bottom: 0.5rem;
+  padding-left: 0.25rem;
+}
+.prose-tutorial li strong {
+  color: var(--primary);
 }
 .prose-tutorial a {
   color: var(--primary);
   text-decoration: underline;
-  text-underline-offset: 2px;
+  text-underline-offset: 3px;
+  text-decoration-color: color-mix(in oklch, var(--primary) 40%, transparent);
+  transition: text-decoration-color 0.15s;
+}
+.prose-tutorial a:hover {
+  text-decoration-color: var(--primary);
 }
 .prose-tutorial strong {
   font-weight: 600;
   color: var(--foreground);
 }
 .prose-tutorial p > code,
-.prose-tutorial li > code {
+.prose-tutorial li > code,
+.prose-tutorial td > code {
   font-family: var(--font-mono);
+  font-size: 0.88em;
+  background: color-mix(in oklch, var(--primary) 10%, var(--background));
+  color: var(--primary);
+  padding: 0.15em 0.4em;
+  border-radius: 4px;
+  font-weight: 500;
 }
-/* KaTeX 在暗色下保持可读 */
+.prose-tutorial blockquote {
+  border-left: 3px solid var(--border);
+  padding-left: 1rem;
+  margin: 1rem 0;
+  color: var(--muted-foreground);
+  font-style: italic;
+}
+.prose-tutorial table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 1rem 0;
+  font-size: 0.9rem;
+}
+.prose-tutorial th {
+  background: color-mix(in oklch, var(--primary) 8%, var(--background));
+  font-weight: 600;
+  text-align: left;
+  padding: 0.6rem 0.8rem;
+  border: 1px solid var(--border);
+}
+.prose-tutorial td {
+  padding: 0.5rem 0.8rem;
+  border: 1px solid var(--border);
+}
+.prose-tutorial hr {
+  border: none;
+  border-top: 1px solid var(--border);
+  margin: 2rem 0;
+}
+/* KaTeX 公式样式 */
+.prose-tutorial .katex {
+  font-size: 1.05em;
+}
 .dark .katex {
   color: var(--foreground);
 }

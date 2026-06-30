@@ -2,13 +2,13 @@ import { motion, useReducedMotion } from 'framer-motion'
 import { Card } from '@/components/ui/card'
 import { Badge } from '@/components/ui/badge'
 
-const STAGES = [
-  { n: 1, title: '准备', desc: '复习记忆化搜索、DFS 状态设计、前缀和思想。约 1-2 天。' },
-  { n: 2, title: '建模板', desc: '理解 limit / lead0 两个标志位，手写通用 DFS 模板。约 2-3 天。' },
-  { n: 3, title: '入门题', desc: '统计区间满足条件的数个数，如不含 62、数字之和等。约 3-5 天。' },
-  { n: 4, title: '进阶题', desc: '引入更多状态位：前导零、连续段、模数余数等。约 1 周。' },
-  { n: 5, title: '变体', desc: '二进制数位、数位+组合数学、数位+AC自动机等。约 1-2 周。' },
-  { n: 6, title: '冲题', desc: '刷题单，按专题归纳，整理自己的模板库。持续。' },
+const CATEGORIES = [
+  { icon: '📐', title: '算法基础', desc: '二分、排序、前缀和、双指针、贪心' },
+  { icon: '🔍', title: '搜索', desc: 'DFS / BFS、回溯与剪枝' },
+  { icon: '📊', title: '动态规划', desc: '背包、区间、树形、状压、数位' },
+  { icon: '🏗️', title: '数据结构', desc: '栈队列、并查集、线段树、树状数组' },
+  { icon: '🕸️', title: '图论', desc: '最短路、MST、LCA、拓扑排序' },
+  { icon: '🧮', title: '数学与字符串', desc: '数论、KMP、Trie' },
 ]
 
 export function RoadmapPreview() {
@@ -17,16 +17,16 @@ export function RoadmapPreview() {
     <section className="bg-muted/30 border-y border-border">
       <div className="mx-auto max-w-6xl px-4 py-24 md:px-6 md:py-28">
         <div className="mb-12 text-center">
-          <h2 className="text-3xl font-bold tracking-tight md:text-4xl">学习路线</h2>
+          <h2 className="text-3xl font-bold tracking-tight md:text-4xl">专题分类</h2>
           <p className="mx-auto mt-4 max-w-2xl text-muted-foreground md:text-lg">
-            6 个阶段递进，预计 3-5 周（按每天 1-2 小时计）。完整版见教程内。
+            六大类覆盖主流算法与数据结构，由浅入深。点击进入对应专题开始学习。
           </p>
         </div>
 
         <div className="grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
-          {STAGES.map((s, i) => (
+          {CATEGORIES.map((cat, i) => (
             <motion.div
-              key={s.n}
+              key={cat.title}
               initial={reduce ? false : { opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, margin: '-60px' }}
@@ -34,10 +34,10 @@ export function RoadmapPreview() {
             >
               <Card className="h-full border-t-2 border-t-primary/60 p-5">
                 <div className="mb-2 flex items-center gap-2">
-                  <Badge variant="secondary" className="font-mono">阶段 {s.n}</Badge>
-                  <h3 className="font-semibold">{s.title}</h3>
+                  <Badge variant="secondary" className="font-mono text-base">{cat.icon}</Badge>
+                  <h3 className="font-semibold">{cat.title}</h3>
                 </div>
-                <p className="text-sm leading-relaxed text-muted-foreground">{s.desc}</p>
+                <p className="text-sm leading-relaxed text-muted-foreground">{cat.desc}</p>
               </Card>
             </motion.div>
           ))}
