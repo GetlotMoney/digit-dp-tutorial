@@ -6,6 +6,7 @@ import { getTopicById } from '@/content/topics-registry'
 import type { TopicMeta } from '@/content/topics-registry'
 import { TopicSidebarNav } from '@/components/layout/TopicSidebarNav'
 import { MarkdownRenderer } from '@/components/markdown/MarkdownRenderer'
+import { extractHeadings } from '@/lib/extract-headings'
 import { Badge } from '@/components/ui/badge'
 import { Card } from '@/components/ui/card'
 import { Button } from '@/components/ui/button'
@@ -29,17 +30,6 @@ const mdModules = import.meta.glob('../content/topics/*/00-overview.md', {
 function getMd(topicId: string): string {
   const key = `../content/topics/${topicId}/00-overview.md`
   return mdModules[key] ?? ''
-}
-
-/* ── 动态加载各专题的 meta.ts ─────────────────────────── */
-const metaModules = import.meta.glob('../content/topics/*/meta.ts', {
-  eager: true,
-}) as Record<string, { SECTIONS?: { id: string; nav: string; title: string }[] }>
-
-function getSections(topicId: string) {
-  const key = `../content/topics/${topicId}/meta.ts`
-  const mod = metaModules[key]
-  return mod?.SECTIONS ?? []
 }
 
 /* ── TopicPage ──────────────────────────────────────────── */
@@ -75,9 +65,9 @@ export default function TopicPage() {
     document.addEventListener('mouseup', onUp)
   }, [sidebarWidth])
 
-  // 获取该专题的全部 markdown 内容
+  // 获取该专题的全部 markdown 内容 + 提取标题层级
   const content = useMemo(() => (topicId ? getMd(topicId) : ''), [topicId])
-  const sections = useMemo(() => (topicId ? getSections(topicId) : []), [topicId])
+  const headings = useMemo(() => extractHeadings(content), [content])
 
   if (!topic) {
     return (
@@ -93,22 +83,22 @@ export default function TopicPage() {
   }
 
   return (
-    <div className="mx-auto flex max-w-[1400px] px-4 md:px-6">
-      {/* 侧栏目录：可拖拽宽度 */}
+    <div className="flex w-full">
+      {/* 侧栏目录：贴左边，可拖拽宽度 */}
       <aside
         className="sticky top-14 hidden h-[calc(100svh-3.5rem)] shrink-0 overflow-y-auto border-r border-border bg-background/50 px-3 py-6 md:block"
         style={{ width: sidebarWidth }}
       >
-        <TopicSidebarNav sections={sections} />
+        <TopicSidebarNav headings={headings} />
       </aside>
 
       {/* 拖拽手柄 */}
       <div
-        className="hidden w-1.5 cursor-col-resize bg-transparent transition-colors hover:bg-primary/30 md:block"
+        className="hidden w-1.5 shrink-0 cursor-col-resize bg-transparent transition-colors hover:bg-primary/30 md:block"
         onMouseDown={handleResizeStart}
       />
 
-      <main className="min-w-0 flex-1 py-10 pl-4 md:pl-8">
+      <main className="min-w-0 flex-1 py-10 pl-6 pr-6 md:pl-10 md:pr-10">
         {/* 专题头部 */}
         <div className="mb-8">
           <Link

@@ -5,9 +5,40 @@ import rehypeKatex from 'rehype-katex'
 import { remarkDemo } from './remark-demo'
 import { CodeBlock } from './CodeBlock'
 import { renderDemo } from '@/lib/demo-registry'
+import { slugify } from '@/lib/extract-headings'
 import { cn } from '@/lib/utils'
 
+/** 提取 React children 的纯文本 */
+function extractText(node: any): string {
+  if (node == null) return ''
+  if (typeof node === 'string') return node
+  if (Array.isArray(node)) return node.map(extractText).join('')
+  if (typeof node === 'object' && node.props) return extractText(node.props.children)
+  if (typeof node === 'object' && node.children) return extractText(node.children)
+  return ''
+}
+
 const components: Components & Record<string, (props: any) => any> = {
+  h2(props) {
+    const { children, ...rest } = props as any
+    const text = extractText(children)
+    const id = slugify(text)
+    return (
+      <h2 id={id} {...rest}>
+        {children}
+      </h2>
+    )
+  },
+  h3(props) {
+    const { children, ...rest } = props as any
+    const text = extractText(children)
+    const id = slugify(text)
+    return (
+      <h3 id={id} {...rest}>
+        {children}
+      </h3>
+    )
+  },
   code(props) {
     const { className, children, node, ...rest } = props as any
     // 行内代码（无 className 且无换行）走默认 <code>
@@ -60,15 +91,6 @@ const components: Components & Record<string, (props: any) => any> = {
   td(props) {
     return <td className="border border-border px-3 py-1.5" {...(props as any)} />
   },
-}
-
-function extractText(node: any): string {
-  if (node == null) return ''
-  if (typeof node === 'string') return node
-  if (Array.isArray(node)) return node.map(extractText).join('')
-  if (typeof node === 'object' && node.props) return extractText(node.props.children)
-  if (typeof node === 'object' && node.children) return extractText(node.children)
-  return ''
 }
 
 // 提示框正文：把首行的 **TIP** 去掉，保留其余内容（已是 React 节点）
