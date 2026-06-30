@@ -5,6 +5,7 @@ import TopicsPage from './pages/TopicsPage'
 import TopicPage from './pages/TopicPage'
 import BlogListPage from './pages/BlogListPage'
 import BlogPostPage from './pages/BlogPostPage'
+import BlogEditorPage from './pages/BlogEditorPage'
 import ProblemsPage from './pages/ProblemsPage'
 import AboutPage from './pages/AboutPage'
 import LoginPage from './pages/LoginPage'
@@ -21,6 +22,8 @@ export const router = createBrowserRouter([
       { path: 'topics/:topicId', element: <TopicPage /> },
       { path: 'tutorial', element: <Navigate to="/topics/digit-dp" replace /> },
       { path: 'blog', element: <BlogListPage /> },
+      { path: 'blog/new', element: <BlogEditorPage /> },
+      { path: 'blog/edit/:id', element: <BlogEditorPage /> },
       { path: 'blog/:slug', element: <BlogPostPage /> },
       { path: 'problems', element: <ProblemsPage /> },
       { path: 'about', element: <AboutPage /> },
