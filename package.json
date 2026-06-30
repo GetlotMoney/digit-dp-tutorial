@@ -1,7 +1,8 @@
 {
-  "name": "digit-dp-tutorial",
+  "name": "guga-algo",
   "private": true,
-  "version": "0.0.0",
+  "version": "1.0.0",
+  "description": "Interactive algorithm tutorial platform with hands-on visualizations",
   "type": "module",
   "scripts": {
     "dev": "vite",

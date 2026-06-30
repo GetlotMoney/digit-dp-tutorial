@@ -1,32 +1,89 @@
-# React + TypeScript + Vite
+# Guga Algo — Interactive Algorithm Tutorial
 
-This template provides a minimal setup to get React working in Vite with HMR and some Oxlint rules.
+An interactive algorithm learning platform with hands-on visualizations. Covers 25+ topics across data structures, graph theory, dynamic programming, math, strings, and more.
 
-Currently, two official plugins are available:
+## Features
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+- **25 algorithm topics** with full tutorial content (overview, core concepts, template code, example problems, practice sets)
+- **Interactive demos** — clickable visualizations for sorting, BFS/DFS, knapsack DP, digit DP, and more
+- **Hierarchical sidebar** — all topics organized by category, with expandable sub-sections
+- **Resizable layout** — drag to adjust sidebar and content width
+- **Dark mode** — light/dark/system theme toggle
+- **Blog** — static markdown blog with tag filtering
+- **Auth system** — Supabase email/password registration and login
+- **KaTeX math** — LaTeX formulas rendered in tutorials
+- **Code highlighting** — Shiki-based syntax highlighting with copy button
+- **Mobile responsive** — collapsible sidebar drawer on small screens
 
-## React Compiler
+## Tech Stack
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+| Layer | Stack |
+|-------|-------|
+| Frontend | Vite + React 19 + TypeScript |
+| Styling | Tailwind CSS v4 + shadcn/ui |
+| Animation | Framer Motion |
+| Markdown | react-markdown + remark-gfm + remark-math + rehype-katex |
+| Code Highlight | Shiki (lazy-loaded) |
+| Auth & Database | Supabase (PostgreSQL + Auth) |
+| Deployment | Vercel |
+| Package Manager | npm |
 
-## Expanding the Oxlint configuration
+## Getting Started
 
-If you are developing a production application, we recommend enabling type-aware lint rules by installing `oxlint-tsgolint` and editing `.oxlintrc.json`:
+```bash
+# Install dependencies
+npm install
 
-```json
-{
-  "$schema": "./node_modules/oxlint/configuration_schema.json",
-  "plugins": ["react", "typescript", "oxc"],
-  "options": {
-    "typeAware": true
-  },
-  "rules": {
-    "react/rules-of-hooks": "error",
-    "react/only-export-components": ["warn", { "allowConstantExport": true }]
-  }
-}
+# Start dev server
+npm run dev
+# → http://localhost:5173
+
+# Build for production
+npm run build
 ```
 
-See the [Oxlint rules documentation](https://oxc.rs/docs/guide/usage/linter/rules) for the full list of rules and categories.
+### Environment Variables
+
+Create `.env.local` in the project root:
+
+```
+VITE_SUPABASE_URL=your_supabase_project_url
+VITE_SUPABASE_ANON_KEY=your_supabase_anon_key
+```
+
+## Project Structure
+
+```
+src/
+├── content/
+│   ├── topics/           # 25 algorithm topics (meta.ts + 00-overview.md each)
+│   ├── blog/             # Blog posts (markdown with frontmatter)
+│   └── topics-registry.ts # Topic metadata & categories
+├── components/
+│   ├── layout/           # TopBar, Sidebar, ThemeToggle, PageTransition
+│   ├── markdown/         # MarkdownRenderer, CodeBlock, remark-demo plugin
+│   ├── home/             # Hero, FeatureCards, RoadmapPreview, Footer
+│   ├── ui/               # shadcn/ui components (Button, Card, Badge, etc.)
+│   └── demos/            # Interactive demo components (lazy-loaded)
+├── pages/                # Route pages (Landing, Topics, Topic, Blog, Login, Register)
+├── hooks/                # useAuth, useTheme, useScrollSpy
+├── lib/                  # supabase client, shiki highlighter, demo-registry, utils
+└── styles/               # demos.css (demo-specific styles)
+```
+
+## Topic Categories
+
+| Category | Topics |
+|----------|--------|
+| Basics | Binary Search, Sorting, Prefix Sum, Two Pointers, Greedy |
+| Search | DFS & BFS, Backtracking |
+| Dynamic Programming | Knapsack, Interval DP, Tree DP, Bitmask DP, Digit DP |
+| Data Structures | Stack & Queue, Union-Find, Segment Tree, Fenwick Tree, Monotonic Stack |
+| Graph Theory | Graph Traversal, Shortest Path, MST, LCA, Topological Sort |
+| Math | Number Theory |
+| Strings | KMP & Trie |
+| Miscellaneous | Discretization & Sqrt Decomposition |
+
+## License
+
+MIT
